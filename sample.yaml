@@ -1,3 +1,7 @@
 data:
   name: test file
   date: today
+---
+data: 
+  format: yaml
+  name: test file 2

@@ -1,0 +1,14 @@
+version: "1"
+manifests:
+- namespace: dev
+  image: "ubuntu:22.04"
+  command: ["sleep", "120"]
+  volume:
+    src: ./dev
+    dst: /mnt/glidein-data
+- namespace: prod
+  image: "almalinux:9"
+  command: ["sleep", "90"]
+  volume:
+    src: ./prod
+    dst: /mnt/glidein-data

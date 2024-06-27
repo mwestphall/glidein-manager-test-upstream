@@ -2,7 +2,7 @@ version: "1"
 manifests:
 - namespace: dev
   image: "ubuntu:22.04"
-  command: ["sh", "-c", "while true; do cat /mnt/glidein-data/*; done"]
+  command: ["sh", "-c", "while true; do cat /mnt/glidein-data/*; sleep 5; done"]
   volume:
     src: ./dev
     dst: /mnt/glidein-data

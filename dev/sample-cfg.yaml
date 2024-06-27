@@ -1,2 +1,4 @@
-name: Bob
-occupation: Baker
+- name: Bob
+  occupation: Baker
+- name: Bill
+  occupation: Chef

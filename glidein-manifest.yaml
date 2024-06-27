@@ -7,7 +7,7 @@ manifests:
     src: ./dev
     dst: /mnt/glidein-data
 - namespace: prod
-  image: "almalinux:9"
+  image: "almalinux:8"
   command: ["sleep", "90"]
   volume:
     src: ./prod

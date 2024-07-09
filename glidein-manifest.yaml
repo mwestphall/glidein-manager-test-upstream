@@ -9,6 +9,9 @@ manifests:
   volume:
     src: ./dev
     dst: /mnt/glidein-data
+  secretSource:
+    sectretName: sample.secret
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
 - namespace: prod
   image: "almalinux:8"
   command: ["sleep", "90"]

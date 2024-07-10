@@ -10,7 +10,7 @@ manifests:
     src: ./dev
     dst: /mnt/glidein-data
   secretSource:
-    secretName: sample.secret
+    secretName: ospool-ep.tkn
     dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
 - namespace: prod
   image: "almalinux:8"

@@ -3,6 +3,9 @@ manifests:
 - namespace: dev
   image: "opensciencegrid/osgvo-docker-pilot:23-release"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
+  security:
+    user: 1000
+    group: 1000
   env:
   - name: GLIDEIN_Site
     value: CHTC

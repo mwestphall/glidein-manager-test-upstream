@@ -1,11 +1,13 @@
 version: "1"
 manifests:
 - namespace: dev
-  image: "ubuntu:22.04"
-  command: ["sh", "-c", "while true; do date; cat /mnt/glidein-data/*; echo $FOO; sleep 5; done"]
+  image: "opensciencegrid/osgvo-docker-pilot:23-release"
+  command: ["/usr/local/sbin/supervisord_startup.sh"]
   env:
-  - name: FOO
-    value: BAR
+  - name: GLIDEIN_Site
+    value: CHTC
+  - name: GLIDEIN_ResourceName
+    value: CHTC-DEV-EP-mwestphall
   volume:
     src: ./dev
     dst: /mnt/glidein-data

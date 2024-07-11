@@ -8,6 +8,8 @@ manifests:
     value: CHTC
   - name: GLIDEIN_ResourceName
     value: CHTC-DEV-EP-mwestphall
+  - name: ITB
+    value: "true"
   volume:
     src: ./dev
     dst: /mnt/glidein-data

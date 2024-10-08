@@ -1,7 +1,7 @@
 version: "1"
 manifests:
 - namespace: dev
-  image: "opensciencegrid/osgvo-docker-pilot:23-release"
+  image: "hub.opensciencegrid.org/opensciencegrid/osgvo-docker-pilot:23-release"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
   security:
     user: 1000

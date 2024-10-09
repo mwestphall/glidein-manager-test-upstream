@@ -13,6 +13,8 @@ manifests:
     value: CHTC-DEV-EP-mwestphall
   - name: ITB
     value: "true"
+  - name: CVMFSEXEC_REPOS
+    value: ""
   volume:
     src: ./dev
     dst: /mnt/glidein-data

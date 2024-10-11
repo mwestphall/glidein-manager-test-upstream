@@ -22,6 +22,29 @@ manifests:
     secretName: ospool-ep.tkn
     dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
 
+
+- namespace: glidein-manager-dev
+  image: "hub.opensciencegrid.org/opensciencegrid/osgvo-docker-pilot:23-release"
+  command: ["/usr/local/sbin/supervisord_startup.sh"]
+  security:
+    user: 1000
+    group: 1000
+  env:
+  - name: GLIDEIN_Site
+    value: CHTC
+  - name: GLIDEIN_ResourceName
+    value: CHTC-DEV-EP-mwestphall
+  - name: ITB
+    value: "true"
+  - name: CVMFSEXEC_REPOS
+    value: ""
+  volume:
+    src: ./dev
+    dst: /mnt/glidein-data
+  secretSource:
+    secretName: ospool-ep.tkn
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+    
 - namespace: prod
   image: "almalinux:8"
   command: ["sleep", "90"]

@@ -15,8 +15,8 @@ manifests:
     value: "true"
   - name: CVMFSEXEC_REPOS
     value: ""
-  - name: TEST_VAR
-    value: "5"
+  - name: POOL
+    value: glideinmanagerpilotset-sample-collector.dev.svc.cluster.local
   volume:
     src: ./dev
     dst: /mnt/glidein-data

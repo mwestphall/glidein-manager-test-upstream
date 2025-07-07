@@ -1,7 +1,7 @@
 version: "1"
 manifests:
 - namespace: dev
-  image: "hub.opensciencegrid.org/opensciencegrid/osgvo-docker-pilot:23-release"
+  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
   security:
     user: 1000

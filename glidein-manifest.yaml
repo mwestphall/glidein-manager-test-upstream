@@ -1,6 +1,7 @@
 version: "1"
 manifests:
 - namespace: dev
+  name: small
   image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
   security:
@@ -22,9 +23,9 @@ manifests:
     secretName: ospool-ep.tkn
     dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
 
-
-- namespace: glidein-manager-dev
-  image: "hub.opensciencegrid.org/opensciencegrid/osgvo-docker-pilot:23-release"
+- namespace: dev
+  name: medium
+  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
   security:
     user: 1000
@@ -38,18 +39,35 @@ manifests:
     value: "true"
   - name: CVMFSEXEC_REPOS
     value: ""
-  - name: POOL
-    value: "128.105.68.149"
-  volume:
-    src: ./dev
-    dst: /mnt/glidein-data
-  secretSource:
-    secretName: westphall2000.tkn
-    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
-    
-- namespace: prod
-  image: "almalinux:8"
-  command: ["sleep", "90"]
   volume:
     src: ./prod
     dst: /mnt/glidein-data
+  secretSource:
+    secretName: ospool-ep.tkn
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+
+
+
+# - namespace: glidein-manager-dev
+#   image: "hub.opensciencegrid.org/opensciencegrid/osgvo-docker-pilot:23-release"
+#   command: ["/usr/local/sbin/supervisord_startup.sh"]
+#   security:
+#     user: 1000
+#     group: 1000
+#   env:
+#   - name: GLIDEIN_Site
+#     value: CHTC
+#   - name: GLIDEIN_ResourceName
+#     value: CHTC-DEV-EP-mwestphall
+#   - name: ITB
+#     value: "true"
+#   - name: CVMFSEXEC_REPOS
+#     value: ""
+#   - name: POOL
+#     value: "128.105.68.149"
+#   volume:
+#     src: ./dev
+#     dst: /mnt/glidein-data
+#   secretSource:
+#     secretName: westphall2000.tkn
+#     dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org

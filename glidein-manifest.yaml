@@ -39,6 +39,8 @@ manifests:
     value: "true"
   - name: CVMFSEXEC_REPOS
     value: ""
+  - name: SINGULARITY_DISABLE_PID_NAMESPACES
+    value: "True"
   volume:
     src: ./prod
     dst: /mnt/glidein-data

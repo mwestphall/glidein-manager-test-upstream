@@ -73,5 +73,5 @@ manifests:
     src: ./dev
     dst: /mnt/glidein-data
   secretSource:
-    secretName: westphall2000.tkn
+    secretName: ospool-ep.tkn
     dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org

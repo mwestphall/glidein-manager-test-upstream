@@ -73,8 +73,6 @@ manifests:
     value: "True"
   - name: _CONDOR_PROCD_LOG
     value: /dev/null
-  - name: POOL
-    value: "localhost:8080"
   volume:
     src: ./dev
     dst: /mnt/glidein-data

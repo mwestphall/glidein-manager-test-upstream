@@ -83,6 +83,33 @@ manifests:
   secretSource:
     secretName: ospool-ep.tkn
     dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+    
+# Non-error case
+- namespace: dev
+  name: no-err
+  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
+  command: ["/usr/local/sbin/supervisord_startup.sh"]
+  security:
+    user: 1000
+    group: 1000
+  env:
+  - name: GLIDEIN_Site
+    value: CHTC
+  - name: GLIDEIN_ResourceName
+    value: CHTC-DEV-EP-mwestphall
+  - name: ITB
+    value: "true"
+  - name: CVMFSEXEC_REPOS
+    value: ""
+  - name: _CONDOR_PROCD_LOG
+    value: /dev/null
+  volume:
+    src: ./dev
+    dst: /mnt/glidein-data
+  secretSource:
+    secretName: ospool-ep.tkn
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+
 
 # Tiger/"Production" Glidein Configs
 

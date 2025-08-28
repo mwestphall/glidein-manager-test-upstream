@@ -113,7 +113,9 @@ manifests:
 
 # Tiger/"Production" Glidein Configs
 
+# Error case 1: Invalid pool 
 - namespace: glidein-manager-dev
+  name: err-a
   image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
   security:
@@ -128,8 +130,87 @@ manifests:
     value: "true"
   - name: CVMFSEXEC_REPOS
     value: ""
-  - name: SINGULARITY_DISABLE_PID_NAMESPACES
-    value: "True"
+  - name: _CONDOR_PROCD_LOG
+    value: /dev/null
+  - name: POOL
+    value: localhost:8081
+  volume:
+    src: ./dev
+    dst: /mnt/glidein-data
+  secretSource:
+    secretName: ospool-ep.tkn
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+
+
+# Error case 2: Blocked outgoing network
+- namespace: glidein-manager-dev
+  name: err-b
+  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
+  command: ["/usr/local/sbin/supervisord_startup.sh"]
+  security:
+    user: 1000
+    group: 1000
+  env:
+  - name: GLIDEIN_Site
+    value: CHTC
+  - name: GLIDEIN_ResourceName
+    value: CHTC-DEV-EP-mwestphall
+  - name: ITB
+    value: "true"
+  - name: CVMFSEXEC_REPOS
+    value: ""
+  - name: _CONDOR_PROCD_LOG
+    value: /dev/null
+  volume:
+    src: ./dev
+    dst: /mnt/glidein-data
+  secretSource:
+    secretName: ospool-ep.tkn
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+
+# Error case 3: Insufficient storage
+- namespace: glidein-manager-dev
+  name: err-c
+  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
+  command: ["/usr/local/sbin/supervisord_startup.sh"]
+  security:
+    user: 1000
+    group: 1000
+  env:
+  - name: GLIDEIN_Site
+    value: CHTC
+  - name: GLIDEIN_ResourceName
+    value: CHTC-DEV-EP-mwestphall
+  - name: ITB
+    value: "true"
+  - name: CVMFSEXEC_REPOS
+    value: ""
+  - name: _CONDOR_PROCD_LOG
+    value: /dev/null
+  volume:
+    src: ./dev
+    dst: /mnt/glidein-data
+  secretSource:
+    secretName: ospool-ep.tkn
+    dst: /etc/condor/tokens-orig.d/flock.opensciencegrid.org
+    
+# Non-error case
+- namespace: glidein-manager-dev
+  name: no-err
+  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
+  command: ["/usr/local/sbin/supervisord_startup.sh"]
+  security:
+    user: 1000
+    group: 1000
+  env:
+  - name: GLIDEIN_Site
+    value: CHTC
+  - name: GLIDEIN_ResourceName
+    value: CHTC-DEV-EP-mwestphall
+  - name: ITB
+    value: "true"
+  - name: CVMFSEXEC_REPOS
+    value: ""
   - name: _CONDOR_PROCD_LOG
     value: /dev/null
   volume:

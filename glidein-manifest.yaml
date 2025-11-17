@@ -197,7 +197,7 @@ manifests:
 # Non-error case
 - namespace: glidein-manager-dev
   name: no-err
-  image: "hub.opensciencegrid.org/mwestphall/ospool-ep:persist-startup-logs"
+  image: "hub.opensciencegrid.org/osg-htc/ospool-ep:25-release"
   command: ["/usr/local/sbin/supervisord_startup.sh"]
   security:
     user: 1000
